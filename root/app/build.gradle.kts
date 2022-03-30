@@ -9,6 +9,7 @@ dependencies {
     implementation(project(":thirdparty-http"))
 
     implementation("io.insert-koin:koin-core-jvm")
+    implementation("ch.qos.logback:logback-classic:1.2.11")
 }
 
 application {
