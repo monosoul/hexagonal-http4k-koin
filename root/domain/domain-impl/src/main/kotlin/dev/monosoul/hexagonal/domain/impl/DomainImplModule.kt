@@ -5,6 +5,6 @@ import org.koin.dsl.module
 
 val domainImplModule = module {
     single<MessageService> {
-        MessageServiceImpl(get())
+        MessageServiceImpl(messageRepository = get(), messageClient = get())
     }
 }
