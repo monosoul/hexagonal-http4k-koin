@@ -5,7 +5,8 @@
 build
 
 # IntelliJ IDEA, but include run configurations
-.idea
+!.idea/
+.idea/*
 !.idea/runConfigurations
 
 # macOS
