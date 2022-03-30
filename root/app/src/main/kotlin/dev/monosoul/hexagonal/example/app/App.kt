@@ -1,5 +1,6 @@
 package dev.monosoul.hexagonal.example.app
 
+import dev.monosoul.hexagonal.domain.impl.domainImplModule
 import dev.monosoul.hexagonal.persistence.jooq.PersistenceConfig
 import dev.monosoul.hexagonal.persistence.jooq.jooqPersistenceModule
 import org.koin.core.context.startKoin
@@ -22,7 +23,7 @@ private val configurations = module {
 fun main() {
     startKoin {
         modules(
-            configurations + jooqPersistenceModule
+            configurations + jooqPersistenceModule + domainImplModule
         )
     }.also {
         getRuntime().addShutdownHook(Thread(it::close, "ShutdownHook"))
