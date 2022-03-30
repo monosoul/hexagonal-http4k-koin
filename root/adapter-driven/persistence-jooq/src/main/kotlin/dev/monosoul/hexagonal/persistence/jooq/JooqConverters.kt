@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
 import org.jooq.Converter
 import org.jooq.JSONB
 
-object JooqConverters {
+internal object JooqConverters {
     @JvmStatic
     private val jsonMapper = Json
 
