@@ -17,6 +17,7 @@ dependencies {
     constraints {
         implementation("io.insert-koin:koin-core-jvm:3.1.5")
     }
+    implementation(platform("org.http4k:http4k-bom:4.25.5.2"))
 
     implementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
