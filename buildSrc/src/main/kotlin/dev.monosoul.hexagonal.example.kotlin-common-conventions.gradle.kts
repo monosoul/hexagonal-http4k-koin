@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.jetbrains.kotlin.jvm")
+    `version-catalog`
 }
 
 repositories {
@@ -13,6 +14,10 @@ repositories {
 }
 
 dependencies {
+    constraints {
+        implementation("io.insert-koin:koin-core-jvm:3.1.5")
+    }
+
     implementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 

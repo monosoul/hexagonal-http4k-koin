@@ -4,4 +4,6 @@ plugins {
 
 dependencies {
     api(project(":domain-persistence-spi"))
+
+    implementation("io.insert-koin:koin-core-jvm")
 }

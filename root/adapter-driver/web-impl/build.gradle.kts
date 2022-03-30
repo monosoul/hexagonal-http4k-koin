@@ -4,4 +4,6 @@ plugins {
 
 dependencies {
     implementation(project(":domain-api"))
+
+    implementation("io.insert-koin:koin-core-jvm")
 }

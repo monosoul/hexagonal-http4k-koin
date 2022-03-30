@@ -4,4 +4,6 @@ plugins {
 
 dependencies {
     api(project(":domain-thirdparty-spi"))
+
+    implementation("io.insert-koin:koin-core-jvm")
 }

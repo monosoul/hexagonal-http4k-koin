@@ -7,6 +7,8 @@ dependencies {
     implementation(project(":domain-impl"))
     implementation(project(":persistence-jooq"))
     implementation(project(":thirdparty-http"))
+
+    implementation("io.insert-koin:koin-core-jvm")
 }
 
 application {
