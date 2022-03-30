@@ -25,7 +25,7 @@ class MessagesController(
                 .let {
                     when(val body = it.body) {
                         is SimpleMessageBody -> "${body.greeting}, ${body.name}!"
-                        is MessageBodyWithAdj -> "${body.greeting}, ${body.adjective}, ${body.name}!"
+                        is MessageBodyWithAdj -> "${body.greeting}, ${body.adjective} ${body.name}!"
                     }
                 }
                 .let(Response(Status.OK)::body)
