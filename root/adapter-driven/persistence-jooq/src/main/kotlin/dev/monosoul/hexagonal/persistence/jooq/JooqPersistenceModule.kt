@@ -12,6 +12,7 @@ import org.jooq.conf.MappedSchema
 import org.jooq.conf.RenderMapping
 import org.jooq.conf.Settings
 import org.jooq.impl.DSL
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.dsl.onClose
 import javax.sql.DataSource
@@ -38,6 +39,10 @@ val jooqPersistenceModule = module {
             .dataSource(get())
             .schemas(config.schema)
             .load()
+    }
+
+    single<Runnable>(qualifier = named("flywayInitializer"), createdAtStart = true) {
+        Runnable { get<Flyway>().migrate() }.also { it.run() }
     }
 
     single<DSLContext> {
