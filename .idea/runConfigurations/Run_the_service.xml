@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run the service" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="dev.monosoul.hexagonal.example.app.AppKt" />
+    <module name="app.hexagonal-http4k-koin.app.main" />
+    <shortenClasspath name="NONE" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+      <option name="Gradle.BeforeRunTask" enabled="true" tasks="composeUp" externalProjectPath="$PROJECT_DIR$/root/app" vmOptions="" scriptParameters="" />
+    </method>
+  </configuration>
+</component>
