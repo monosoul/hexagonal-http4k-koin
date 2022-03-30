@@ -1,0 +1,7 @@
+### Get a message from the DB
+GET http://localhost:9999/messages/57046b95-25d6-44cd-96ee-1a2cb17cc9a5
+Accept: application/json
+
+### Get a message from remote service and cache it in the DB
+GET http://localhost:9999/messages/efee9736-c7f6-430e-b697-cbee639cee23
+Accept: application/json
