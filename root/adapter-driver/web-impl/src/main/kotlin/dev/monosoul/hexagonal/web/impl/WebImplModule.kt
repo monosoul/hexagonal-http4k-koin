@@ -5,9 +5,9 @@ import org.http4k.routing.routes
 import org.http4k.server.Http4kServer
 import org.http4k.server.Undertow
 import org.http4k.server.asServer
-import org.koin.core.definition.Definition
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
+import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import org.koin.dsl.onClose
 
@@ -32,5 +32,7 @@ internal interface RouterProvider : () -> RoutingHttpHandler {
 }
 
 private inline fun <reified T : RouterProvider> Module.singleController(
-    noinline definition: Definition<T>
-) = single<RouterProvider>(qualifier = named(""), definition = definition)
+    noinline definition: Scope.() -> T
+) = single(qualifier = named(T::class.java.canonicalName)) {
+    definition().invoke()
+}
