@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 val thirdPartyImplModule = module {
     single<MessageClient> {
-        MessageClientImpl(ApacheClient())
+        MessageClientImpl(client = ApacheClient(), clientConfig = get())
     }
 }

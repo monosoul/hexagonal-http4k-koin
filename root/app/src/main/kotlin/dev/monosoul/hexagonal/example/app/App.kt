@@ -3,6 +3,7 @@ package dev.monosoul.hexagonal.example.app
 import dev.monosoul.hexagonal.domain.impl.domainImplModule
 import dev.monosoul.hexagonal.persistence.jooq.PersistenceConfig
 import dev.monosoul.hexagonal.persistence.jooq.jooqPersistenceModule
+import dev.monosoul.hexagonal.thirdparty.impl.ThirdPartyClientConfig
 import dev.monosoul.hexagonal.thirdparty.impl.thirdPartyImplModule
 import dev.monosoul.hexagonal.web.impl.WebConfig
 import dev.monosoul.hexagonal.web.impl.webImplModule
@@ -23,6 +24,9 @@ private val configurations = module {
     }
     single {
         WebConfig(port = 9999)
+    }
+    single {
+        ThirdPartyClientConfig(protocol = "http", host = "localhost", port = 9966)
     }
 }
 
