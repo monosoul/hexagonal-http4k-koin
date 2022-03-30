@@ -1,5 +1,6 @@
 plugins {
     id("dev.monosoul.hexagonal.example.kotlin-application-conventions")
+    id("com.avast.gradle.docker-compose") version "0.15.2"
 }
 
 dependencies {
@@ -14,4 +15,16 @@ dependencies {
 
 application {
     mainClass.set("dev.monosoul.hexagonal.example.app.AppKt")
+}
+
+dockerCompose {
+    useComposeFiles.set(
+        listOf(
+            rootProject.file("docker-compose.yml").absolutePath
+        )
+    )
+    captureContainersOutput.set(false)
+    stopContainers.set(false)
+
+    isRequiredBy(tasks.run)
 }
