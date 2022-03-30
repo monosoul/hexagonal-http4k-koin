@@ -1,0 +1,17 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/messages/efee9736-c7f6-430e-b697-cbee639cee23"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "adjmessage.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

@@ -11,3 +11,14 @@ services:
       - POSTGRES_DB=hexagonal
     ports:
       - "6666:5432"
+
+  wiremock-slack:
+    image: wiremock/wiremock:latest
+    volumes:
+      - ./root/adapter-driven/thirdparty-http/src/test/resources/wiremock/__files/:/home/wiremock/__files/:z
+      - ./root/adapter-driven/thirdparty-http/src/test/resources/wiremock/mappings/:/home/wiremock/mappings/:z
+    command:
+      - --verbose
+      - --global-response-templating
+    ports:
+      - "9966:8080"
