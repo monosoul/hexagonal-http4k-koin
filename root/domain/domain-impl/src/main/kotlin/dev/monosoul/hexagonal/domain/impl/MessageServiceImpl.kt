@@ -8,5 +8,5 @@ import dev.monosoul.hexagonal.domain.persistence.spi.MessageRepository
 class MessageServiceImpl(
     private val messageRepository: MessageRepository
 ) : MessageService {
-    override fun get(id: MessageId): Message = messageRepository.get(id)
+    override fun get(id: MessageId): Message = messageRepository.find(id)!!
 }

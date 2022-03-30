@@ -5,5 +5,5 @@ import dev.monosoul.hexagonal.domain.model.MessageId
 
 interface MessageRepository {
     fun save(message: Message): Message
-    fun get(id: MessageId): Message
+    fun find(id: MessageId): Message?
 }

@@ -20,9 +20,9 @@ class MessageRepositoryImpl(
         .returning()
         .fetchOne(::toMessage)!!
 
-    override fun get(id: MessageId) = jooq.selectFrom(MESSAGES)
+    override fun find(id: MessageId) = jooq.selectFrom(MESSAGES)
         .where(MESSAGES.ID.eq(id))
-        .fetchOne(::toMessage)!!
+        .fetchOne(::toMessage)
 
     private fun toMessage(record: MessagesRecord) = with(record) { Message(id, body) }
 }
