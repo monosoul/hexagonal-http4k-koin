@@ -11,12 +11,11 @@ import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import org.koin.dsl.onClose
 
-fun webImplModule(autostart: Boolean = true) = module {
+fun webImplModule(config: WebConfig, autostart: Boolean = true) = module {
     singleController {
         MessagesController(get())
     }
     single<Http4kServer> {
-        val config = get<WebConfig>()
         routes(*getAll<RoutingHttpHandler>().toTypedArray()).asServer(Undertow(config.port))
     }.onClose {
         it?.stop()
@@ -27,7 +26,7 @@ fun webImplModule(autostart: Boolean = true) = module {
     }
 }
 
-internal interface RouterProvider : () -> RoutingHttpHandler {
+internal fun interface RouterProvider : () -> RoutingHttpHandler {
     override fun invoke(): RoutingHttpHandler
 }
 

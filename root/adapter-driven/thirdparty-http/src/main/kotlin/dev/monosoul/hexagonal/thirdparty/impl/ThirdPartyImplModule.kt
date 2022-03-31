@@ -4,8 +4,8 @@ import dev.monosoul.hexagonal.domain.thirdparty.spi.MessageClient
 import org.http4k.client.ApacheClient
 import org.koin.dsl.module
 
-val thirdPartyImplModule = module {
+fun thirdPartyImplModule(config: ThirdPartyClientConfig) = module {
     single<MessageClient> {
-        MessageClientImpl(client = ApacheClient(), clientConfig = get())
+        MessageClientImpl(client = ApacheClient(), clientConfig = config)
     }
 }

@@ -17,10 +17,8 @@ import org.koin.dsl.module
 import org.koin.dsl.onClose
 import javax.sql.DataSource
 
-fun jooqPersistenceModule(autostart: Boolean = true) = module {
+fun jooqPersistenceModule(config: PersistenceConfig, autostart: Boolean = true) = module {
     single {
-        val config = get<PersistenceConfig>()
-
         HikariConfig().apply {
             jdbcUrl = "jdbc:postgresql://${config.host}:${config.port}/${config.database}"
             username = config.username
@@ -33,8 +31,6 @@ fun jooqPersistenceModule(autostart: Boolean = true) = module {
     }.onClose { (it as? HikariDataSource)?.close() }
 
     single<Flyway> {
-        val config = get<PersistenceConfig>()
-
         Flyway.configure()
             .dataSource(get())
             .schemas(config.schema)
@@ -49,7 +45,7 @@ fun jooqPersistenceModule(autostart: Boolean = true) = module {
         DSL.using(
             get<DataSource>(),
             POSTGRES,
-            get<PersistenceConfig>().toJooqSettings()
+            config.toJooqSettings()
         )
     }
 
