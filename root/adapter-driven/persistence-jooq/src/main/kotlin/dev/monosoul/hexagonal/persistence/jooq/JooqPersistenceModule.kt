@@ -17,7 +17,7 @@ import org.koin.dsl.module
 import org.koin.dsl.onClose
 import javax.sql.DataSource
 
-val jooqPersistenceModule = module {
+fun jooqPersistenceModule(autostart: Boolean = true) = module {
     single {
         val config = get<PersistenceConfig>()
 
@@ -41,7 +41,7 @@ val jooqPersistenceModule = module {
             .load()
     }
 
-    single<Runnable>(qualifier = named("flywayInitializer"), createdAtStart = true) {
+    single<Runnable>(qualifier = named("flywayInitializer"), createdAtStart = autostart) {
         Runnable { get<Flyway>().migrate() }.also { it.run() }
     }
 

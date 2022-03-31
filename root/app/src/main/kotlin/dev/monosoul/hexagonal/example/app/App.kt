@@ -33,7 +33,7 @@ private val configurations = module {
 fun main() {
     startKoin {
         modules(
-            configurations + jooqPersistenceModule + domainImplModule + webImplModule + thirdPartyImplModule
+            configurations + jooqPersistenceModule() + domainImplModule + webImplModule() + thirdPartyImplModule
         )
     }.also {
         getRuntime().addShutdownHook(Thread(it::close, "ShutdownHook"))

@@ -11,7 +11,7 @@ import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import org.koin.dsl.onClose
 
-val webImplModule = module {
+fun webImplModule(autostart: Boolean = true) = module {
     singleController {
         MessagesController(get())
     }
@@ -22,7 +22,7 @@ val webImplModule = module {
         it?.stop()
     }
 
-    single(qualifier = named("webInitializer"), createdAtStart = true) {
+    single(qualifier = named("webInitializer"), createdAtStart = autostart) {
         Runnable { get<Http4kServer>().start() }.also { it.run() }
     }
 }
