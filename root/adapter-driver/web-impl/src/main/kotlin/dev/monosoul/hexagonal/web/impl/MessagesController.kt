@@ -4,10 +4,12 @@ import dev.monosoul.hexagonal.domain.api.MessageService
 import dev.monosoul.hexagonal.domain.model.MessageBody.MessageBodyWithAdj
 import dev.monosoul.hexagonal.domain.model.MessageBody.SimpleMessageBody
 import dev.monosoul.hexagonal.domain.model.MessageId
+import io.undertow.util.Headers.CONTENT_TYPE_STRING
+import org.http4k.core.ContentType.Companion.TEXT_PLAIN
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
 import org.http4k.core.Response
-import org.http4k.core.Status
+import org.http4k.core.Status.Companion.OK
 import org.http4k.routing.bind
 import org.http4k.routing.path
 import org.http4k.routing.routes
@@ -23,12 +25,12 @@ class MessagesController(
                 .let(::MessageId)
                 .run(messageService::get)
                 .let {
-                    when(val body = it.body) {
+                    when (val body = it.body) {
                         is SimpleMessageBody -> "${body.greeting}, ${body.name}!"
                         is MessageBodyWithAdj -> "${body.greeting}, ${body.adjective} ${body.name}!"
                     }
                 }
-                .let(Response(Status.OK)::body)
+                .let(Response(OK).header(CONTENT_TYPE_STRING, TEXT_PLAIN.toHeaderValue())::body)
         }
     )
 }
